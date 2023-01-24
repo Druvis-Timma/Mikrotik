@@ -1,12 +1,12 @@
 /system script add name=telegram source={
 :local lastUpdateID 0;
 :local botToken "0000000000:OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
-:local chatID 0000000000
+:local userID 0000000000
 :local SEND do={
     :put $3
     /tool fetch url="https://api.telegram.org/bot$1/sendmessage?chat_id=$2&text=$3" output=user
 }
-$SEND $botToken $chatID "Telegram script initiated."
+$SEND $botToken $userID "Telegram script initiated."
 :local loops 0
 :while (true) do={
     :put ("Loop nr ".$loops)
@@ -34,7 +34,7 @@ $SEND $botToken $chatID "Telegram script initiated."
                     :if (($marray->$i) = "from") do={
                         :local sender ([:toarr ($marray->([:tonum $i]+2))]->1)
                         :set sender [:pick $sender 1 [:len $sender]]
-                        :if (sender = $chatID) do={:set trusted true;}
+                        :if (sender = $userID) do={:set trusted true;}
                     }
                     :if (($marray->$i) = "text") do={
                         :local val ($marray->([:tonum $i]+2))
@@ -47,7 +47,7 @@ $SEND $botToken $chatID "Telegram script initiated."
         }
     }
     :if ([:len $command] > 0) do={
-        $SEND $botToken $chatID ("Received: $command")
+        $SEND $botToken $userID ("Received: $command")
         :local fun ([:system ssh-exec 0.0.0.0 $command as-value]->"output");
         :local loop true
         :while ($loop) do={
@@ -65,7 +65,7 @@ $SEND $botToken $chatID "Telegram script initiated."
             :local newline [:find $fun "\n"]
             :local line [:pick $fun 0 ($newline-1)]
             :set fun [:pick $fun ($newline+1) $lenght]
-            $SEND $botToken $chatID $line
+            $SEND $botToken $userID $line
         }
     }
     :set loops (loops+1)
