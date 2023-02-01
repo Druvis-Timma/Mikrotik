@@ -9,13 +9,13 @@
 :local userID "0000000000"
 :local SEND do={
     :put $3
-    /tool fetch url="https://api.telegram.org/bot$1/sendmessage?chat_id=$2&text=$3" output=user use-certificate=yes
+    /tool fetch url="https://api.telegram.org/bot$1/sendmessage?chat_id=$2&text=$3" output=user check-certificate=yes
     }
 $SEND $botToken $userID "Telegram script initiated."
 :local loops 0
 :while (true) do={
   :put ("Loop nr ".$loops)
-  :local data ([/tool fetch url="https://api.telegram.org/bot$botToken/getUpdates?offset=$lastUpdateID" output=user use-certificate=yes as-value]->"data")
+  :local data ([/tool fetch url="https://api.telegram.org/bot$botToken/getUpdates?offset=$lastUpdateID" output=user check-certificate=yes as-value]->"data")
   :local start 0
   :local end 0
   :set start ([:find $data "["]+1)
