@@ -53,7 +53,8 @@ $SEND $botToken $userID "Telegram script initiated."
   }
   :if ([:len $command] > 0) do={
       $SEND $botToken $userID ("Received: $command")
-      :local fun ([:execute $command])
+      :local fun ([:execute $command as-string])
+      #The as-string parameter has been introduced from v7.8
       :local funlength ([:len $fun]-1)
       :local encodedOutput ""
       :for i from= 0 to= $funlength do={
