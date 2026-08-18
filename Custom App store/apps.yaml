@@ -1,0 +1,33 @@
+- name: app-example-1
+  descr: This is an example of a custom app.
+  page: https://mikrotik.com
+  category: example
+  icon: https://mikrotik.com/logo/library/logo/PNG/MT_Symbol_Black.png
+  services:
+    my-custom-app-1:
+      image: docker.io/alpine:latest
+      container_name: custom-app-1
+      volumes:
+        - media:/data/media
+- name: app-example-2
+  descr: This is an example of a custom app.
+  page: https://mikrotik.com
+  category: example
+  icon: https://mikrotik.com/logo/library/logo/PNG/MT_Symbol_Black.png
+  services:
+    my-custom-app-2:
+      image: docker.io/alpine:latest
+      container_name: custom-app-2
+      volumes:
+        - media:/data/media
+- name: app-example-3
+  descr: This is an example of a custom app.
+  page: https://mikrotik.com
+  category: example
+  icon: https://mikrotik.com/logo/library/logo/PNG/MT_Symbol_Black.png
+  services:
+    my-custom-app-3:
+      image: docker.io/alpine:latest
+      container_name: custom-app-3
+      volumes:
+        - media:/data/media
