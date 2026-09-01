@@ -2,7 +2,6 @@
   descr: This is an example of a custom app that creates a mounted directory <disk>/apps/app-example-1/data
   page: https://mikrotik.com
   category: example
-  icon: https://mikrotik.com/logo/library/logo/PNG/MT_Symbol_Black.png
   services:
     my-custom-app-1:
       image: docker.io/alpine:latest
@@ -14,7 +13,6 @@
   descr: This is an example of a custom app that mounts a special directory <disk>/media
   page: https://mikrotik.com
   category: example
-  icon: https://mikrotik.com/logo/library/logo/PNG/MT_Symbol_Black.png
   services:
     my-custom-app-2:
       image: docker.io/alpine:latest
