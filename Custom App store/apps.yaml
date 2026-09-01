@@ -1,5 +1,5 @@
 - name: app-example-1
-  descr: This is an example of a custom app.
+  descr: This is an example of a custom app that creates a mounted directory <disk>/apps/app-example-1/data
   page: https://mikrotik.com
   category: example
   icon: https://mikrotik.com/logo/library/logo/PNG/MT_Symbol_Black.png
@@ -8,9 +8,10 @@
       image: docker.io/alpine:latest
       container_name: custom-app-1
       volumes:
-        - media:/data/media
+        - data:/data
+      command: /bin/sh -c "tail -f /dev/null"
 - name: app-example-2
-  descr: This is an example of a custom app.
+  descr: This is an example of a custom app that mounts a special directory <disk>/media
   page: https://mikrotik.com
   category: example
   icon: https://mikrotik.com/logo/library/logo/PNG/MT_Symbol_Black.png
@@ -20,14 +21,15 @@
       container_name: custom-app-2
       volumes:
         - media:/data/media
+      command: /bin/sh -c "tail -f /dev/null"
 - name: app-example-3
-  descr: This is an example of a custom app.
+  descr: This is an example of an app that doesn't do anything.
   page: https://mikrotik.com
   category: example
+  default-credentials: no credentials needed
   icon: https://mikrotik.com/logo/library/logo/PNG/MT_Symbol_Black.png
   services:
     my-custom-app-3:
       image: docker.io/alpine:latest
       container_name: custom-app-3
-      volumes:
-        - media:/data/media
+      command: /bin/sh -c "sleep infinity"
